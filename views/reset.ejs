@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+</head>
+
+<body>
+    <h2>Reset Password</h2>
+
+    <% if (error) { %>
+        <p style="color:red">
+            <%= error %>
+        </p>
+        <a href="/forgot">Request a new link</a>
+        <% } %>
+
+            <% if (token) { %>
+                <form action="/reset-password" method="POST">
+
+                    <!-- Hidden input passes the token back to POST /reset-password -->
+                    <input type="hidden" name="token" value="<%= token %>" />
+
+                    <label>New Password</label><br>
+                    <input type="password" name="newPassword" required minlength="8" /><br><br>
+                    <button type="submit">Update Password</button>
+                </form>
+                <% } %>
+</body>
+</html>
